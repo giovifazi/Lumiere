@@ -3,6 +3,7 @@ Web technologies course project
 
 Authors: 
   Giovanni Fazi (annotator, Google books api, Twitter api, landing page, wikiquote api, django setup)
+  
   Vairo di Pasquale (visualizer, Google maps (dbpedia) api, D3.js, search page)
   
 Lumiere is a sophisticated Resource Annotator, Visualizer and Enhancer.
