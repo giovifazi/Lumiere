@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block additionalcss %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% endblock %}
+
+</head>
+
+<body>
+
+   {% block fullpage%}
+   <div id="fullpage">
+      <div class="section" data-anchor="home">
+   {% endblock %}
+
+         {% block content %}
+         <!-- Title -->
+         <h1 class="text-center" id="title">Lumi<em>è</em>res</h1>
+         <h4 class="text-center text-info"><small>An enhanced Wikipedia reader and annotator<br></small></h4>
+
+         <p class="nosmallscreen">
+         <br>
+         </p>
+
+
+         <form>
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search..." id="searchTerm">
+               <div class="input-group-btn">
+                  <button class="btn btn-default" type="button" id="search">
+                     <i class="glyphicon glyphicon-search"></i>
+                  </button>
+               </div>
+            </div>
+         </form>
+
+         {% endblock %}
+
+         {% block closefullpsection %}
+         <div class="container" id="downscroll">
+            <div class="row">
+               <div class="col-md-12">
+                  <a href="#links"><p class="text-center text-info"><span class="nosmallscreen"><span class="label label-primary">suggested links</span></span><br><i class="fa fa-angle-double-down"></i></p></a>
+               </div>
+            </div>
+         </div>
+      </div>
+      {% endblock %}
+
+      {% block additionalhtml %}
+      <div class="section" data-anchor="links">
+         <!-- Suggested links -->
+         {% if suggLinks %}
+         <div class="slide">
+            <div class="container">
+               <div class="row">
+                  {% for link in suggLinks %}
+
+                  <div class="col-xs-6 col-sm-3 col-md-3 col-lg-3 divSuggLink">
+                     <div class="card">
+                        <div class="card-block">
+                           <h4 class="card-title">{{ link.title }}</h4>
+                           <p class="card-text nosmallscreen">{{ link.extract }}</p>
+                           <a href="/visualize/{{ link.title  }}" class="card-link">Read</a>
+                        </div>
+                     </div>
+                  </div>
+
+                  {% if forloop.counter|divisibleby:"4" %}
+               </div>
+            </div>
+         </div>
+
+         {% if forloop.counter != 20 %}
+         <div class="slide">
+            <div class="container">
+               <div class="row">
+                  {% endif %}
+
+                  {% endif%}
+
+                  {% endfor %}
+                  {% else %}
+                  <p>Could not load suggested links</p>
+                  {% endif %}
+
+                  <!-- upscroll arrow -->
+                  <div class="container" id="upscroll">
+                     <div class="row">
+                        <div class="col-md-12">
+                           <a href="#home"><p class="text-center text-info"><i class="fa fa-angle-double-up"></i><br><span class="label label-primary">back to top</span></p></a>
+                        </div>
+                     </div>
+                  </div>
+
+               </div>
+
+            </div>
+            {% endblock %}
+
+
+
+            {% block additionaljs %}
+            <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.4/jquery.fullpage.min.js"></script>
+
+            <script type="text/javascript">
+$(document).ready(function() {
+   $('#fullpage').fullpage({
+      anchors:['home', 'links'],
+      css3: true,
+      recordHistory: false
+   });
+
+   $("#search").click(function() {
+      currentHost = window.location.host;
+      var searchTerm = $("#searchTerm").val();
+      currentHost += "/search/";
+      currentHost += encodeURIComponent(searchTerm);
+
+      modHost = "http://";
+      modHost += currentHost;
+
+      if (modHost == "http://jake.cs.unibo.it:8080/search/")
+      {
+         alert("Please enter a valid search term");
+         modHost = "http://jake.cs.unibo.it:8080/";
+      }
+
+      window.location.href = modHost; 
+   });
+
+   $("#searchTerm").keyup(function(e){
+      if (e.keyCode == 13) {
+         $("#search").click();
+      }
+   });
+
+
+});
+            </script>
+            {% endblock %}
+
+
+</body>
+</html>

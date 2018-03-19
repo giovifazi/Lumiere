@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block additionalcss %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'rave_proj/style.css' %}">
+{% endblock %}
+
+
+   {% block additionalhtml %}
+   <!-- Searchbar -->
+   <div class="container">
+      <br>
+      <br>
+      <br>
+      <div id="jumbohoriz" class ="jumbotron">
+         <form>
+            <div class="input-group">
+               <input type="text" class="form-control" placeholder="Search..." id="searchTerm">
+               <div class="input-group-btn">
+                  <button class="btn btn-default" type="button" id="search">
+                     <i class="glyphicon glyphicon-search"></i>
+                  </button>
+               </div>
+            </div>
+         </form>
+      </div>
+   </div>
+   <!-- SearchPage -->
+   <div id = "outputFather"></div>
+   <!-- SearchPage -->
+   <div id="loading"></div>
+   {% endblock %}
+
+   {% block additionaljs%}
+   <script>
+
+      $("#searchTerm").keydown(function(e){
+         if (e.keyCode == 13) {
+            $("#search").focus();
+         }
+      });
+   </script>
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmcBdHTJVGDgsl729o5cj8bYjkU7yEkHw"></script>					
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+   <script type="text/javascript" src ="{% static 'js/ajax.js' %}"></script>
+   {% endblock %}

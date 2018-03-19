@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <title>Rave</title>
+
+      <meta charset="utf-8">
+      <meta name="description" content="Landing Page">
+      <meta name="author" content="Giovanni Fazi">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+
+      {% block additionalcss %}{% endblock %}
+
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   </head>
+
+   <body>
+
+      <!-- Navbar -->
+      {% block fullpage %}{% endblock %}
+      <nav class="navbar navbar-inverse navbar-fixed-top">
+         <div class="container-fluid">
+            <div class="navbar-header">
+               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>                        
+               </button>
+               <a class="navbar-brand" href="/"><i class="fa fa-lightbulb-o"></i></a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+
+               <ul class="nav navbar-nav">
+                  <li class="active"><a href="/#home">Home</a></li>
+                  <li><a href="/#links">Links</a></li>
+               </ul>
+
+               {% if user.is_authenticated %}
+               <p class="navbar-text"><small>Welcome <span id="hereusername">{{ user.get_username }}</span>, click here to <a href="/accounts/logout?next={{ request.path }}">logout</a></small></p>
+               {% else %}
+               <p class="navbar-text"><small>Only registered users can take annotations</small></p>
+               {% endif %}
+
+
+               <ul class="nav navbar-nav navbar-right">
+                  <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+                  <li><a href="/accounts/login?next={{ request.path }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+               </ul>
+            </div>
+         </div>
+      </nav>
+
+
+      <div class="container-fluid" id="shadow">
+         <div class="row">
+            <div class="col-md-2 col-lg-1"></div>
+
+            <div class="col-md-8 col-lg-10">
+
+               <div id="jumbohoriz" class ="jumbotron dontshow">
+                  {% block content %}{% endblock %}
+               </div>
+            </div>
+
+            <div class="col-md-2 col-lg-1"></div>
+         </div>
+      </div>
+      {% block closefullpsection %}{% endblock %}
+
+      {% block additionalhtml %}{% endblock %}
+
+      <script src="https://code.jquery.com/jquery-3.2.0.min.js" integrity="sha256-JAW99MJVpJBGcbzEuXk4Az05s/XyDdBomFqNlM3ic+I=" crossorigin="anonymous"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+      {% block additionaljs %}{% endblock %}
+
+   </body>
+</html>

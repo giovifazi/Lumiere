@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+
+{% block additionalcss %}
+{% load  static %}
+<link rel="stylesheet" type="text/css" href="{% static 'rave_proj/stylebase.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+
+   <p>Create an account</p>
+   <form method="post" action=".">
+      {{ form }}
+      <br>
+      <input class="btn btn-default" type="submit" value="register" />
+   </form>
+
+</div>
+
+<style>
+body{
+    background-image: url('https://gdurl.com/f2yx');
+}
+</style>
+{% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+@media (max-width: 780px) {
+   .jumbohoriz {
+      padding-top: 2px !important;
+      padding-bottom: 2px !important;
+   }
+
+   .nosmallscreen {
+      font-size: 0px !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      display: none !important;
+      position: absolute !important;
+      top: -9999px !important;
+      left: -9999px !important;
+   }
+}
+
+@media (max-height: 650px) {
+   .jumbohoriz {
+      padding-top: 2px !important;
+      padding-bottom: 2px !important;
+   }
+
+   .nosmallscreen {
+      font-size: 0px !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      display: none !important;
+      position: absolute !important;
+      top: -9999px !important;
+      left: -9999px !important;
+   }
+}
+
+body > .container-fluid {
+   top: 32%;
+   position: absolute;
+   width: 100%;
+}
+
+.navbar {
+   border-radius: 0px;
+   background-color: #2d2d30 !important;
+   opacity: 0.8;
+}
+
+.navbar-nav li.active {
+   color: #fff !important;
+   background-color:#29292c !important;
+}

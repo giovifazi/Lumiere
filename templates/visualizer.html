@@ -1,0 +1,198 @@
+{% extends "base.html" %}
+
+{% block additionalcss %}
+
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/visualizer.css' %}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="http://emory-lits-labs.github.io/annotator-meltdown/build/0.3.0/annotator.meltdown.min.css" />
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> 
+{% endblock %}
+
+</head>
+
+<body>
+
+    {% block fullpage%}{% endblock %}
+    {% block content %}{% endblock %}
+
+    {% block additionalhtml %}
+    <br>
+    <br>
+    <br>
+    <div class="container-fluid">
+        <!-- searchbar -->
+        <div class="row">
+            <div class="col-md-2 col-lg-1"></div>
+
+            <div class="col-md-8 col-lg-10">
+
+                <div id="jumbosearchbar" class ="jumbotron">
+                    <form>
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search..." id="searchTerm">
+                            <div class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="search">
+                                    <i class="glyphicon glyphicon-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+            <div class="col-md-2 col-lg-1"></div>
+        </div>
+        <!-- searchbar end-->
+
+        <br>
+
+        <!-- quote -->
+        <div class="row">
+            <div class="col-md-2 col-lg-1"></div>
+
+            <div class="col-md-8 col-lg-10">
+            </div>
+
+            <div class="col-md-2 col-lg-1"></div>
+        </div>
+        <!-- quote end-->
+
+        <!-- article, search res-->
+        <div class="w3-row">
+
+            <div class="w3-col m7 l9" id="article" style="display: none;">
+                <div id = "outputFather"></div>
+                <div id = "wikiFather"></div>
+                <div id = "loading"></div>
+            </div>
+
+
+            <!-- article, search res end-->
+
+
+            <div class="w3-col m5 l3" id="enhancer" style="display: none;">
+
+                <div class="col-md-12 col-lg-12" id="noquote">
+                    <div class="jumbotron" id="quote">
+                        <blockquote class="quote-box">
+                            <p class="quotation-mark">
+                                “
+                            </p>
+                            <p class="quote-text" id="herequote"></p>
+                            <hr>
+                            <div class="blog-post-actions">
+                                <p class="blog-post-bottom pull-left" id="quoteauthor">
+                                </p>
+                                <p class="blog-post-bottom pull-right">
+                                    <a class="btn btn-default" data-placement="bottom" data-toggle="tooltip" title="Tweet it!" href="" id="tweetquote"><span class="fa fa-twitter"></span></a>
+                                    <a class="btn btn-default" data-placement="bottom" data-toggle="tooltip" title="Another!"id="anotherquote"><span class="fa fa-refresh"></span></a>
+                                </p>
+                            </div>
+                        </blockquote>
+                    </div>
+                </div>
+
+
+                <!-- cross stuff -->
+                <div class="col-md-12 col-lg-12">
+                    <div id = "crossFather"></div>
+                </div>
+                <!-- cross stuff end -->
+
+                <!-- google maps-->
+                <div class="col-md-12 col-lg-12">
+                    <div id = "mapFather"></div>
+                </div>
+                <!-- google maps end-->
+
+                <!-- graph stuff -->  
+                <div class="col-md-12 col-lg-12">
+                    <div id = "graphFather"></div>
+                </div>      
+                <!-- graph stuff end -->
+
+                <!-- books Modal -->
+                <div class="col-md-12 col-lg-12">
+                    <div class="jumbotron" id="books">
+                        <h4>Related Books search</h4>
+
+                        <table class="table table-striped" id="herebooks">
+                        </table>
+                    </div>
+                </div>
+                <!-- book Modal end-->
+
+
+                <!-- revisions start-->
+                <div class="col-md-12 col-lg-12">
+                    <div id="dropDownFather">
+                    </div>
+                </div>    
+                <!-- revisions end-->
+
+
+                <!-- twitter trends-->
+
+                <div class="col-md-12 col-lg-12">
+                    <div id = "twittertrends">
+                        {% for user, tweet in tweets.items %} 
+
+                        <div class="panel-info">
+                            <div class="panel-heading">
+                                <h3 class="panel-title"><span class="fa fa-twitter"></span> @{{ user }}:</h3>
+                                <div class="panel-body">
+                                    <p>{{ tweet }}</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        {% endfor %}
+                    </div>
+                </div>
+                <!-- twitter trends end-->
+            </div>
+        </div>
+
+        <br>
+        {% endblock %}
+
+
+        {% block additionaljs %}
+        <script src="{% static 'js/enhancer.min.js' %}"></script>
+        <script src="{% static 'js/visual.js' %}"></script>
+        <script type="text/javascript" src="https://github.com/openannotation/annotator/releases/download/v2.0.0-alpha.3/annotator.min.js"></script>
+        <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCmcBdHTJVGDgsl729o5cj8bYjkU7yEkHw"></script>					
+        <script type="text/javascript" src="http://emory-lits-labs.github.io/annotator-meltdown/build/0.3.0/annotator.meltdown.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.4.0/Chart.min.js"></script>	
+        {% if not user.is_authenticated %}
+        <style>
+         .annotator-adder, .annotator-controls{
+             display: none;
+         }
+        </style>
+        {% endif %}
+
+        <script type="text/javascript">
+         // Map stuff
+         function initMap(title,styles,LAT,LNG){
+             var options = {
+                 zoom:13,
+                 center:{lat:LAT,lng:LNG}
+             }  
+             var map = new google.maps.Map(document.getElementById('map'), options);
+             map.set('styles',styles);
+
+             var marker = new google.maps.Marker({
+                 position:{lat:LAT,lng:LNG},
+                 icon: "https://cdn1.iconfinder.com/data/icons/streamline-map-location-2/60/cell-0-2-30.png",
+                 animation: google.maps.Animation.DROP,
+                 map:map
+             });
+         }
+        </script>
+        {% endblock %}
+
+
+</body>
+</html>

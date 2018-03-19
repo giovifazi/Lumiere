@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+
+{% block additionalcss %}
+{% load  static %}
+<link rel="stylesheet" type="text/css" href="{% static 'rave_proj/stylebase.css' %}">
+{% endblock %}
+
+{% block content %}
+<p>Logged out!</p>
+<br>
+<p>Redirecting to Home</p>  
+<style>
+body{
+    background-image: url('https://gdurl.com/f2yx');
+}
+</style>
+{% endblock %}
+
+</body>
+</html>

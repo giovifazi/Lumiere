@@ -1,0 +1,200 @@
+@media (orientation: landscape) and (max-device-width: 1280px) {
+   .jumbohoriz {
+      padding-top: 2px !important;
+      padding-bottom: 2px !important;
+   }
+
+   .nolandscape {
+      font-size: 0px !important;
+      opacity: 0 !important;
+      visibility: hidden !important;
+      display: none !important;
+      position: absolute !important;
+      top: -9999px !important;
+      left: -9999px !important;
+   }
+}
+
+body{
+    background-image: url('https://gdurl.com/f2yx');
+}
+
+html {
+   overflow-x: hidden !important;
+}
+
+div#shadow {
+   opacity: 0 !important;
+   position: absolute !important;
+   top: -9999px !important;
+   left: -9999px !important;
+}
+
+.navbar {
+   border-radius: 0px;
+   opacity: 0.8;
+}
+
+
+p#herequote {
+   pointer-events: none;
+   cursor: default;
+}
+
+blockquote{
+    border-left:none
+}
+
+
+
+.quote-badge{
+    background-color: rgba(0, 0, 0, 0.2);   
+}
+
+.quote-box{
+    overflow: hidden;
+    margin: 0 !important;
+    border: 0 !important;
+    padding-top: 25px;
+    border-radius: 17px;
+    background-color: rgba(238, 238, 238);
+    color:#494641;
+}
+
+hr {
+   border-top: 1px solid #494641 !important;
+}
+
+.quotation-mark{
+    font-weight: bold !important;
+    font-size:100px !important;
+    color:#494641;
+    margin-bottom: -50px !important;
+    margin-top: -50px !important;
+    margin-left: -20px !important;
+    font-family: "Times New Roman", Georgia, Serif;
+    
+}
+
+.quote-text{
+    font-size: 19px;
+}
+
+div#jumbosearchbar
+{
+   margin-left: 15px;
+   margin-right: 15px;
+   padding: 10px;
+   box-shadow: 10px 10px 5px #D9D9D9;
+}
+
+h1
+{
+   border-radius: 10px;
+   overflow: hidden;
+   background-color: #D9D9D9;
+   padding: 10px;
+   color: #29292c;
+   margin-bottom: 60px;
+   font-size: 90%;
+}
+
+#wiki,#graph,#map,#cross,#books,#dropDown,#quote
+{
+   margin-left: 7px;
+   margin-right: 7px;
+   padding: 10px;
+   box-shadow: 10px 10px 5px #D9D9D9;
+}
+
+#graph,#cross
+{
+  max-height: 500px;
+}
+h2
+{
+     border-bottom:3px solid #D9D9D9;
+}
+#cross li
+{
+      border-bottom:3px dotted #D9D9D9;
+      list-style-type: none;
+      margin-bottom: 10px;
+      padding: 5px;
+      margin-left: -40px;
+}
+h5
+{
+   color: #C8C8C8;
+   font-style: italic;
+}
+
+#map
+{
+   height: 400px;
+}
+#wiki p
+{
+  font-size: 90%;
+}
+
+#twittertrends .panel-info
+{
+   margin-left: 7px;
+   margin-right: 7px;
+   margin-bottom: 7px;
+   box-shadow: 10px 10px 5px #D9D9D9;
+}
+
+table
+{
+   overflow-x: scroll;
+}
+
+th, td
+{
+   max-width: 50px;
+   overflow: hidden;
+}
+
+
+#books,#dropDown,#twittertrends,#cross
+{
+	overflow: scroll;
+	max-height: 400px;
+	overflow-x: hidden;
+}
+
+
+
+::-webkit-scrollbar
+{
+	width: 5px;
+}
+
+::-webkit-scrollbar-track {
+    
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #CCCCCC;
+}
+
+#dropDownFather button
+{
+	margin-top: 5px;
+}
+
+.raw .jumbotron
+{
+	max-height: 10px
+
+}
+
+#drop li
+{
+  list-style-type: none;	
+}
+
+
